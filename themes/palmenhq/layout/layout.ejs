@@ -1,0 +1,66 @@
+<%
+  const title = (page.title ? page.title + ' - ' : '') + config.title
+  const description = page.description ?? config.description
+%>
+
+<html lang="<%= config.language %>">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%= title %></title>
+    <meta name="og:title" content="<%= title %>">
+    <% if (description) { %>
+      <meta name="description" content="<%= description %>">
+      <meta name="og:description" content="<%= description %>">
+    <% } %>
+    <meta name="canonical" content="<%= page.permalink %>">
+    <link rel="stylesheet"
+          href="//unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/default.min.css">
+    <% if (env.env === 'production') { %>
+      <link rel="stylesheet" href="/<%= manifest()['themes/palmenhq/public/main.css'].file %>">
+    <% } %>
+
+  </head>
+
+  <body>
+
+  <%- body %>
+
+  <div id="react-root"></div>
+  <script type="text/javascript">
+    <%
+ const state = {
+   content: page.content,
+   title: page.title,
+   date: page.updated?.toISOString(),
+   slug: page.slug,
+   permalink: page.permalink,
+   layout: page.layout,
+ }
+ %>
+      window.__phq_state = <%- JSON.stringify(state, null ,2) %>
+  </script>
+
+  <% if (env.env === 'development') { %>
+  <script type="module">
+    import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+    RefreshRuntime.injectIntoGlobalHook(window)
+    window.$RefreshReg$ = () => {}
+    window.$RefreshSig$ = () => (type) => type
+    window.__vite_plugin_react_preamble_installed__ = true
+  </script>
+  <script type="module" src="http://localhost:5173/@vite/client"></script>
+  <script type="module" src="http://localhost:5173/themes/palmenhq/public/main.tsx"></script>
+  <% } else { %>
+    <script src="/<%= manifest()['themes/palmenhq/public/main.tsx'].file %>"></script>
+  <%
+  }
+  %>
+  <script src="//unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js"></script>
+
+  </body>
+</html>
