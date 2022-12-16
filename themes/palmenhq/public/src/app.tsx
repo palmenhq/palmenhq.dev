@@ -1,11 +1,7 @@
-import { HexoState } from './hexo-state'
-import { Post } from './post'
+import { HexoState } from './utils/hexo-state'
+import { Post } from './layout_/post'
+import { Layout } from './layout_/layout'
 
 export const App: React.FC<{ state: HexoState }> = ({ state }) => {
-  return (
-    <>
-      {state.layout === 'post' && <Post state={state} />}
-      <pre>{JSON.stringify(state, null, 2)}</pre>
-    </>
-  )
+  return <Layout state={state}>{state.layout === 'post' && <Post state={state} />}</Layout>
 }

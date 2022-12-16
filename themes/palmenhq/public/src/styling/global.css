@@ -1,0 +1,49 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
+  background: var(--background);
+  color: var(--foreground);
+
+  font-family: 'Chivo Mono', monospace;
+  font-weight: 300;
+}
+
+#react-root {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--foreground);
+  text-decoration: underline;
+}
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+}
+
+blockquote {
+  border-left: var(--border);
+  border-width: 0.5rem;
+  padding-left: 1rem;
+  margin-left: 0;
+  font-style: italic;
+}

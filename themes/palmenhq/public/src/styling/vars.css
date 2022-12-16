@@ -1,0 +1,7 @@
+:root {
+  --background: #1d1f21;
+  --foreground: #c9cacc;
+  --muted: #696565;
+  --primary: #999cf1;
+  --border: 1px solid var(--muted);
+}

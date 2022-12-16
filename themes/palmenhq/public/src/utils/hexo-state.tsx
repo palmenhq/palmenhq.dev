@@ -6,4 +6,6 @@ export type HexoState = {
   slug: string
   permalink: string
   layout: 'post' | 'page' | 'tag' | 'archive'
+
+  toc: string
 }

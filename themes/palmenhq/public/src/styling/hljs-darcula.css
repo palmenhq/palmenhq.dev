@@ -10,34 +10,38 @@
  * @author Zeno Rocha <hi@zenorocha.com>
  */
 
+.highlight {
+  --hljs-background: #282a36;
+}
+
 .hljs {
-    display: block;
-    overflow-x: auto;
-    padding: 0.5em;
-    background: #282a36;
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: var(--hljs-background);
 }
 
 .hljs-built_in,
 .hljs-selector-tag,
 .hljs-section,
 .hljs-link {
-    color: #8be9fd;
+  color: #8be9fd;
 }
 
 .hljs-keyword {
-    color: #ff79c6;
+  color: #ff79c6;
 }
 
 .hljs,
 .hljs-subst {
-    color: #f8f8f2;
+  color: #f8f8f2;
 }
 
 .hljs-title,
 .hljs-attr,
 .hljs-meta-keyword {
-    font-style: italic;
-    color: #50fa7b;
+  font-style: italic;
+  color: #50fa7b;
 }
 
 .hljs-string,
@@ -50,13 +54,13 @@
 .hljs-variable,
 .hljs-template-tag,
 .hljs-template-variable {
-    color: #f1fa8c;
+  color: #f1fa8c;
 }
 
 .hljs-comment,
 .hljs-quote,
 .hljs-deletion {
-    color: #6272a4;
+  color: #6272a4;
 }
 
 .hljs-keyword,
@@ -68,14 +72,39 @@
 .hljs-type,
 .hljs-name,
 .hljs-strong {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .hljs-literal,
 .hljs-number {
-    color: #bd93f9;
+  color: #bd93f9;
 }
 
 .hljs-emphasis {
-    font-style: italic;
+  font-style: italic;
+}
+
+/* overrides */
+.highlight {
+  margin: 0;
+}
+.highlight table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.highlight .gutter {
+  width: 2ch;
+  min-width: 2ch;
+}
+
+.highlight .code {
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  max-width: calc(100% - 2ch);
+}
+
+.highlight figcaption {
+  font-size: 0.8em;
+  color: var(--muted);
 }
