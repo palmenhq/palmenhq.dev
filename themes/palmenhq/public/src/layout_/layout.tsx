@@ -18,7 +18,6 @@ const Main = styled.div`
   padding-top: 8rem;
 
   ${mediaDesktopSmUp`
-    width: calc(100% - 15rem);
     max-width: 60rem;
     padding-top: 4rem;
     padding-left: 3rem;

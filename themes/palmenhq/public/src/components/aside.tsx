@@ -19,14 +19,14 @@ const AsideContainer = styled.div`
     position: static;
     width: 30vw;
     border-bottom: 0;
-    max-width: 15rem;
+    max-width: 20rem;
   `}
 `
 const AsideInner = styled.div`
   display: flex;
   position: sticky;
   top: 0;
-  padding: 1rem;
+  padding: 1rem 2rem;
   flex-direction: column;
 
   justify-content: space-between;
