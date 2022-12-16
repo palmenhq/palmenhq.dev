@@ -2,6 +2,7 @@
   --background: #1d1f21;
   --foreground: #c9cacc;
   --muted: #696565;
+  --dark-text: #939393;
   --primary: #999cf1;
   --border: 1px solid var(--muted);
 }

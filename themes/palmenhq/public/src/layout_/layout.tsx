@@ -15,12 +15,12 @@ const Container = styled.div`
 
 const Main = styled.div`
   padding: 1rem;
-  padding-top: 6rem;
+  padding-top: 8rem;
 
   ${mediaDesktopSmUp`
     width: calc(100% - 15rem);
     max-width: 60rem;
-    padding-top: 1rem;
+    padding-top: 4rem;
     padding-left: 3rem;
   `}
 `

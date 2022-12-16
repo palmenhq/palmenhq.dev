@@ -1,6 +1,7 @@
 <%
-  const title = (page.title ? page.title + ' - ' : '') + config.title
   const description = page.description ?? config.description
+  const title = page_title()
+  const full_page_title = (title.length > 0 ? title + ' - ' + config.title : config.title)
 %>
 
 <html lang="<%= config.language %>">
@@ -11,8 +12,8 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title><%= title %></title>
-    <meta name="og:title" content="<%= title %>">
+    <title><%= full_page_title %></title>
+    <meta name="og:title" content="<%= full_page_title %>">
     <% if (description) { %>
       <meta name="description" content="<%= description %>">
       <meta name="og:description" content="<%= description %>">
@@ -33,14 +34,35 @@
   <div id="react-root"></div>
   <script type="text/javascript">
     <%
+      const mapTags = tags => tags.map(tag => ({
+        name: tag.name,
+        slug: tag.slug,
+        path: tag.path,
+        permalink: tag.permalink,
+        length: tag.length,
+      }))
  const state = {
    content: page.content ?? null,
    toc: toc(page.content),
-   title: page.title ?? null,
-   date: page.updated?.toISOString() ?? null,
+   title: title ?? null,
+   date: page.date?.format('ll') ?? null,
    slug: page.slug ?? null,
    permalink: page.permalink ?? null,
    layout: page.layout ?? null,
+   isArchive: page.archive ?? false,
+   isTag: Boolean(page.tag),
+   posts: (!page.archive && !page.tag) ? [] : page.posts.map(post => ({
+     title: post.title,
+     date: post.date?.format('ll'),
+     content: post.content,
+     excerpt: post.excerpt,
+     slug: post.slug,
+     published: post.published,
+     path: post.path,
+     permalink: post.permalink,
+     tags: mapTags(post.tags),
+   })),
+   tags: page.tags ? mapTags(page.tags) : [],
  }
  %>
       window.__phq_state = <%- JSON.stringify(state, null ,2) %>

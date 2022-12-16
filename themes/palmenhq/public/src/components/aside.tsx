@@ -72,6 +72,7 @@ const TocHeadline = styled.div`
   display: none;
 
   ${mediaDesktopSmUp`
+    display: block;
     font-size: 1.5rem;
     border-bottom: var(--border);
   `}

@@ -19,6 +19,10 @@ a {
   color: var(--foreground);
   text-decoration: underline;
 }
+a:hover,
+a:focus {
+  color: var(--primary);
+}
 
 * {
   box-sizing: border-box;

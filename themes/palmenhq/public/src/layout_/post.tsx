@@ -1,6 +1,8 @@
 import { HexoState } from '../utils/hexo-state'
 import styled from '@emotion/styled'
 import { Author } from '../components/author'
+import { mediaDesktopLgUp } from '../utils/media'
+import { Tag, TagCloud } from '../components/tags'
 
 const Content = styled.div`
   h1,
@@ -16,8 +18,13 @@ const Content = styled.div`
 
 const Header = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex-direction: column;
+
+  ${mediaDesktopLgUp`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  `}
 `
 
 const MetaData = styled.div`
@@ -27,8 +34,11 @@ const MetaData = styled.div`
 `
 
 const Date = styled.div`
-  padding-top: 1rem;
   color: var(--muted);
+
+  ${mediaDesktopLgUp`
+    padding-top: 1rem;
+  `}
 `
 
 export const Post: React.FC<{ state: HexoState }> = ({ state }) => {
@@ -45,6 +55,12 @@ export const Post: React.FC<{ state: HexoState }> = ({ state }) => {
           </MetaData>
         </div>
       </Header>
+
+      <TagCloud>
+        {state.tags.map((tag) => (
+          <Tag tag={tag} />
+        ))}
+      </TagCloud>
 
       <Content dangerouslySetInnerHTML={{ __html: state.content }} />
     </>

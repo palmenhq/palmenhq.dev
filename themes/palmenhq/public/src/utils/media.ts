@@ -12,3 +12,9 @@ export const mediaDesktopSmUp = (template: TemplateStringsArray, ...args: Array<
     ${css(template, ...args)}
   }
 `
+
+export const mediaDesktopLgUp = (template: TemplateStringsArray, ...args: Array<CSSInterpolation>) => css`
+  @media (min-width: 1024px) {
+    ${css(template, ...args)}
+  }
+`
