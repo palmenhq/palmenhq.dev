@@ -11,8 +11,8 @@ const Content = styled.div`
   h4,
   h5,
   h6 {
-    padding-top: 7rem;
-    margin-top: -7rem;
+    padding-top: 8rem;
+    margin-top: -6rem;
   }
 `
 
@@ -58,7 +58,7 @@ export const Post: React.FC<{ state: HexoState }> = ({ state }) => {
 
       <TagCloud>
         {state.tags.map((tag) => (
-          <Tag tag={tag} />
+          <Tag key={tag.slug} tag={tag} />
         ))}
       </TagCloud>
 

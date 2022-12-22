@@ -24,7 +24,7 @@ export type HexoState = {
 
   slug: string
   permalink: string
-  layout: 'post' | 'page' | 'tag'
+  layout: 'post' | 'page' | 'about' | 'start' | null
 
   toc: string
 

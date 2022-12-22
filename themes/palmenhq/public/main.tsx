@@ -1,4 +1,5 @@
 import 'vite/modulepreload-polyfill'
+import '@highlightjs/cdn-assets/highlight'
 import './src/styling/index.css'
 import { createRoot } from 'react-dom/client'
 import { App } from './src/app'

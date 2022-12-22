@@ -7,6 +7,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  justify-content: space-between;
 
   ${mediaTabletUp`
     flex-direction: row;
@@ -14,13 +15,15 @@ const Container = styled.div`
 `
 
 const Main = styled.div`
-  padding: 1rem;
-  padding-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8rem 1rem;
+  width: 100%;
 
   ${mediaDesktopSmUp`
     max-width: 60rem;
     padding-top: 4rem;
-    padding-left: 3rem;
   `}
 `
 
@@ -29,6 +32,7 @@ export const Layout: React.FC<{ state: HexoState; children: React.ReactNode }> =
     <Container>
       <Aside toc={state.toc} />
       <Main>{children}</Main>
+      <div></div>
     </Container>
   )
 }

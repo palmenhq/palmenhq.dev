@@ -3,6 +3,8 @@ import { Burger } from './burger'
 import styled from '@emotion/styled'
 import { mediaDesktopSmUp } from '../utils/media'
 import { keyframes } from '@emotion/react'
+import { EmailIcon, GithubIcon, LinkedinIcon } from './icons'
+import { githubHref, linkedinHref } from '../utils/content'
 
 const AsideContainer = styled.div`
   position: fixed;
@@ -10,7 +12,7 @@ const AsideContainer = styled.div`
   right: 0;
   left: 0;
   width: 100%;
-  background: var(--background);
+  background: var(--background-contrast-soft);
   border-bottom: var(--border);
   z-index: 999;
   box-shadow: 5px 0 20px rgba(0, 0, 0, 0.3);
@@ -20,6 +22,7 @@ const AsideContainer = styled.div`
     width: 30vw;
     border-bottom: 0;
     max-width: 20rem;
+    box-shadow: none;
   `}
 `
 const AsideInner = styled.div`
@@ -28,8 +31,12 @@ const AsideInner = styled.div`
   top: 0;
   padding: 1rem 2rem;
   flex-direction: column;
-
-  justify-content: space-between;
+  ${mediaDesktopSmUp`
+    height: 100vh;
+    justify-content: space-between;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  `}
 `
 
 const TopRow = styled.div`
@@ -46,13 +53,14 @@ const TopRow = styled.div`
 const LogoContainer = styled.a`
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
   text-decoration: none;
   color: var(--primary);
 
   ${mediaDesktopSmUp`
+    width: 100%;
     padding-bottom: 5rem;
+    justify-content: center;
   `}
 `
 const Logo = styled.img`
@@ -192,6 +200,14 @@ const Overlay = styled.div<{ isOpen: boolean; isClosing: boolean }>`
   `}
 `
 
+const Socials = styled.div`
+  padding-bottom: 2rem;
+  display: none;
+  ${mediaDesktopSmUp`
+    display: block;
+  `}
+`
+
 export const Aside: React.FC<{ toc: string }> = ({ toc }) => {
   const tocMenu = useRef<HTMLDivElement>()
   const tocButton = useRef<HTMLDivElement>()
@@ -292,79 +308,93 @@ export const Aside: React.FC<{ toc: string }> = ({ toc }) => {
     <>
       <AsideContainer>
         <AsideInner>
-          <TopRow>
-            <LogoContainer href="/">
-              <Logo src="/images/logo.png" alt="" />
-              <LogoText>palmenhq</LogoText>
-            </LogoContainer>
+          <div>
+            <TopRow>
+              <LogoContainer href="/">
+                <Logo src="/images/logo.png" alt="" />
+                <LogoText>palmenhq</LogoText>
+              </LogoContainer>
 
-            {toc.length > 0 && (
-              <BurgerContainer ref={tocButton}>
+              {toc.length > 0 && (
+                <BurgerContainer ref={tocButton}>
+                  <Burger
+                    isOpen={isTocOpen}
+                    isClosing={isTocClosing}
+                    onClick={() => {
+                      if (isTocOpen) {
+                        closeToc()
+                      } else {
+                        openToc()
+                      }
+                    }}
+                  >
+                    TOC
+                  </Burger>
+                </BurgerContainer>
+              )}
+
+              <BurgerContainer ref={menuButton}>
                 <Burger
-                  isOpen={isTocOpen}
-                  isClosing={isTocClosing}
+                  isOpen={isMenuOpen}
+                  isClosing={isMenuClosing}
                   onClick={() => {
-                    if (isTocOpen) {
-                      closeToc()
+                    if (isMenuOpen) {
+                      closeMenu()
                     } else {
-                      openToc()
+                      openMenu()
                     }
                   }}
                 >
-                  TOC
+                  Menu
                 </Burger>
               </BurgerContainer>
+            </TopRow>
+
+            <Menu isOpen={isMenuOpen} isClosing={isMenuClosing} ref={menuMenu} aria-hidden={!isMenuOpen}>
+              <ul>
+                <MenuItem>
+                  <MenuLink href="/">Start</MenuLink>
+                </MenuItem>
+                <MenuItem>
+                  <MenuLink href="/about/">About Palmen</MenuLink>
+                </MenuItem>
+                <MenuItem>
+                  <MenuLink href="/annotated/">@Annotated blog</MenuLink>
+                </MenuItem>
+              </ul>
+            </Menu>
+
+            {toc.length > 0 && (
+              <>
+                <TocHeadline>ToC</TocHeadline>
+                <Menu
+                  isOpen={isTocOpen}
+                  isClosing={isTocClosing}
+                  dangerouslySetInnerHTML={{ __html: toc }}
+                  onClick={() => {
+                    closeToc()
+                  }}
+                  ref={tocMenu}
+                  aria-hidden={!isTocOpen}
+                />
+              </>
             )}
+          </div>
 
-            <BurgerContainer ref={menuButton}>
-              <Burger
-                isOpen={isMenuOpen}
-                isClosing={isMenuClosing}
-                onClick={() => {
-                  if (isMenuOpen) {
-                    closeMenu()
-                  } else {
-                    openMenu()
-                  }
-                }}
-              >
-                Menu
-              </Burger>
-            </BurgerContainer>
-          </TopRow>
-
-          <Menu isOpen={isMenuOpen} isClosing={isMenuClosing} ref={menuMenu} aria-hidden={!isMenuOpen}>
-            <ul>
-              <MenuItem>
-                <MenuLink href="/">Start</MenuLink>
-              </MenuItem>
-              <MenuItem>
-                <MenuLink href="/about/">About Johan</MenuLink>
-              </MenuItem>
-              <MenuItem>
-                <MenuLink href="/annotated/">@Annotated blog</MenuLink>
-              </MenuItem>
-            </ul>
-          </Menu>
-
-          {toc.length > 0 && (
-            <>
-              <TocHeadline>ToC</TocHeadline>
-              <Menu
-                isOpen={isTocOpen}
-                isClosing={isTocClosing}
-                dangerouslySetInnerHTML={{ __html: toc }}
-                onClick={() => {
-                  closeToc()
-                }}
-                ref={tocMenu}
-                aria-hidden={!isTocOpen}
-              />
-            </>
-          )}
-
-          {/* spacer */}
-          <div></div>
+          <Socials>
+            Find me on{' '}
+            <a href={linkedinHref} target="_blank" title="Johan Palmfjord">
+              <LinkedinIcon />
+            </a>
+            ,{' '}
+            <a href={githubHref} target="_blank" title="palmenhq">
+              <GithubIcon />
+            </a>
+            , and{' '}
+            <a href="mailto:johan@palmenhq.dev" title="johan@palmenhq.dev">
+              <EmailIcon />
+            </a>
+          </Socials>
         </AsideInner>
       </AsideContainer>
       {(isMenuOpen || isTocOpen || isMenuClosing || isTocClosing) && (

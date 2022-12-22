@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,300;0,500;1,300;1,500&display=swap');
 
+@import '@highlightjs/cdn-assets/styles/default.min.css';
+
 @import './vars.css';
 @import './global.css';
 @import './hljs-darcula.css';

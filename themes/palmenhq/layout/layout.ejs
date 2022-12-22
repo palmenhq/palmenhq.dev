@@ -19,12 +19,13 @@
       <meta name="og:description" content="<%= description %>">
     <% } %>
     <meta name="canonical" content="<%= page.permalink %>">
-    <link rel="stylesheet"
-          href="//unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/default.min.css">
     <% if (env.env === 'production') { %>
       <link rel="stylesheet" href="/<%= manifest()['themes/palmenhq/public/main.css'].file %>">
     <% } %>
 
+    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   </head>
 
   <body>
@@ -41,30 +42,30 @@
         permalink: tag.permalink,
         length: tag.length,
       }))
- const state = {
-   content: page.content ?? null,
-   toc: toc(page.content),
-   title: title ?? null,
-   date: page.date?.format('ll') ?? null,
-   slug: page.slug ?? null,
-   permalink: page.permalink ?? null,
-   layout: page.layout ?? null,
-   isArchive: page.archive ?? false,
-   isTag: Boolean(page.tag),
-   posts: (!page.archive && !page.tag) ? [] : page.posts.map(post => ({
-     title: post.title,
-     date: post.date?.format('ll'),
-     content: post.content,
-     excerpt: post.excerpt,
-     slug: post.slug,
-     published: post.published,
-     path: post.path,
-     permalink: post.permalink,
-     tags: mapTags(post.tags),
-   })),
-   tags: page.tags ? mapTags(page.tags) : [],
- }
- %>
+      const state = {
+        content: page.content ?? null,
+       toc: toc(page.content),
+        title: title ?? null,
+        date: page.date?.format('ll') ?? null,
+        slug: page.slug ?? null,
+        permalink: page.permalink ?? null,
+        layout: page.__index ? 'start' : page.layout ?? null,
+        isArchive: page.archive ?? false,
+        isTag: Boolean(page.tag),
+        posts: page.posts?.map(post => ({
+          title: post.title,
+          date: post.date?.format('ll'),
+          content: post.content,
+          excerpt: post.excerpt,
+          slug: post.slug,
+          published: post.published,
+          path: post.path,
+          permalink: post.permalink,
+          tags: mapTags(post.tags),
+        })) ?? [],
+        tags: page.tags ? mapTags(page.tags) : [],
+      }
+    %>
       window.__phq_state = <%- JSON.stringify(state, null ,2) %>
   </script>
 
@@ -83,7 +84,6 @@
   <%
   }
   %>
-  <script src="//unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js"></script>
 
   </body>
 </html>

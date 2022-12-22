@@ -1,8 +1,12 @@
 :root {
   --background: #1d1f21;
+  --background-contrast: #111111;
+  --background-contrast-soft: #151515;
   --foreground: #c9cacc;
-  --muted: #696565;
+  --contrast-foreground: #ffffff;
+  --muted: #424244;
   --dark-text: #939393;
   --primary: #999cf1;
+  --danger: #c74d4d;
   --border: 1px solid var(--muted);
 }

@@ -440,6 +440,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.16.4.tgz#6ec594468610c176933da1387c609558371d37e0"
   integrity sha512-sN/I8FMPtmtT2Yw+Dly8Ur5vQ5a/RmC8hW7jO9PtPSQUPkowxWpcUZnqOggU7VwyT3Xkj6vcXWd3V/qTXwultQ==
 
+"@highlightjs/cdn-assets@^11.7.0":
+  version "11.7.0"
+  resolved "https://registry.yarnpkg.com/@highlightjs/cdn-assets/-/cdn-assets-11.7.0.tgz#8e759d20f97b1ae6e73f92ebbf1dd64b4396035a"
+  integrity sha512-FNBhxhkI18qDA+SbUc6560d8N20WWBdUjalTKeZExV4eQaPAreEXQILj8QpAuBWJMUC4pD0/MzdEyI3+urJlSQ==
+
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz#e5d2e450306a9491e3bd77e323e38d7aff315996"
