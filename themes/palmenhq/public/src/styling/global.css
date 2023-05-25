@@ -71,3 +71,9 @@ blockquote {
   margin-left: 0;
   font-style: italic;
 }
+
+code {
+  background-color: var(--background-light);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+}

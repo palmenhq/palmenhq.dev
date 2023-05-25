@@ -8,7 +8,7 @@ const PageTitle = styled.h1`
 `
 
 const ArticleContainer = styled.div`
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
 `
 
 const Title = styled.a`
@@ -24,6 +24,7 @@ const Date = styled.div`
 `
 const Excerpt = styled.p`
   color: var(--dark-text);
+  margin-top: 0;
 `
 
 const Article: React.FC<{ post: HexoPost }> = ({ post }) => {
