@@ -14,13 +14,15 @@ Idea: Embedding code, that can perform cryptographic operations, together with p
 
 Use case: You're next to your colleague, and want to send something secret over Slack.
 
+In short; when you download an Ecedehey HTML file from [the demo](https://palmenhq.dev/create-ecedehey.html), you can use it to encrypt files that can be sent to a receiver. 
+
 ## Try it
 
 You can try it on [palmenhq.dev/create-ecedehey.html](https://palmenhq.dev/create-ecedehey.html). The code is available on [github.com/palmenhq/ecedehey](https://github.com/palmenhq/ecedehey). 
 
 ## How it works
 
-The concept is simple; An HTML file generates private keys, that are embedded into other HTML files (let's call them private key HTML files). These private key HTML files can encrypt and decrypt content performing an asynchronous ECDH. The idea struck me when I found out that filesystem-served (`file://`) files are considered a [secure context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts) in the browsers. The WebCrypto API is only available in secure contexts.
+The concept is simple; An HTML file generates private keys, that are embedded into other HTML files (let's call them private key HTML files). These private key HTML files can encrypt and decrypt content performing an asynchronous ECDH. The idea struck me when I found out that filesystem-served (`file://`) files are considered a [secure context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts) in the browsers, as the WebCrypto API is only available in secure contexts.
 
 These are the steps that are taken in Ecedehey to encrypt and then decrypt something:
 
@@ -31,10 +33,10 @@ These are the steps that are taken in Ecedehey to encrypt and then decrypt somet
 5. Alice sends the ecdhmsg file to Bob (safely via an insecure medium)
 6. Bob opens the ecdhmsg file using his SKHF. As the ecdhmsg contains Alice's PK, Bob's SKHF can derive the same SEK, and thus decrypt the file F 🥳 
 
-Sounds great - and very straightforward, yeah? Well, if you're not familiar with asymmetric cryptography it may seem messy - but jokes aside, I think this is a pretty standard procedure in asymmetrical cryptography. Sometimes another Key Derivation Function (KDF) is used, but I think this should be fine.
+Sounds great - and very straightforward, yeah? Well, if you're not familiar with asymmetric cryptography it may seem messy - but jokes aside, I think this is a pretty standard procedure in asymmetrical cryptography.
 
-### Caveats
+## Caveats
 
-*So can you use this for production?* **NO!** Please don't. This was a fun experiment from my end, nothing too serious.
+*So can you use this for production?* **NO!** Please don't. This was a fun experiment from my end, and shouldn't be considered ready for sensitive values.
 
 *So how insecure is it, to be precise?* Well, I think the cryptographic bits should be fine, as they are mostly handled by the browser - and I sure hope the bigtech™ browser vendor companies know how to get cryptography right. The main problem I can think of lies within how the keys are stored - in plain text on your disk. Any security expert will have a small heart attack if you tell them that's your way of managing cryptographic keys. That being said, there might be other issues I've missed. If you find any - feel free to put an issue on GitHub ✨
