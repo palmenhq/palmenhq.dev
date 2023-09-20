@@ -34,7 +34,7 @@ const AsideInner = styled.div`
   ${mediaDesktopSmUp`
     height: 100vh;
     justify-content: space-between;
-    overflow-y: scroll;
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   `}
 `
