@@ -17,7 +17,7 @@ const Name = styled.div`
 export const Author = () => {
   return (
     <Container>
-      <Avatar src="/images/johan-palmfjord.jpg" />
+      <Avatar src="/images/johan-palmfjord-2025.jpg" />
       <Name>by Johan Palmfjord</Name>
     </Container>
   )

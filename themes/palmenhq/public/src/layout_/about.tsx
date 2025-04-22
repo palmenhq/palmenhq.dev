@@ -25,7 +25,7 @@ export const About: React.FC<{ state: HexoState }> = ({ state }) => {
       <h1>{state.title}</h1>
       <ContentContainer>
         <ImageContainer>
-          <Img src="/images/johan-palmfjord.jpg" alt="Johan Palmen Palmfjord" />
+          <Img src="/images/johan-palmfjord-2025.jpg" alt="Johan Palmen Palmfjord" />
         </ImageContainer>
 
         <div dangerouslySetInnerHTML={{ __html: state.content }}></div>
